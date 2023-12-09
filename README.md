@@ -14,6 +14,7 @@ This project contains the back-end code for Instawork's home assignment
 
 Project is created with:
 - react version: 18.2.0
+- emotion/styled version: 11.11.0
 
 ## Setup
 
