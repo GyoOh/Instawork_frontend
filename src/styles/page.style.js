@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
 
+export const PageWrapper = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-height: 90vh;
+`;
+
 export const PageContainer = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
-max-width: 500px;
-height: 90vh;
+max-width: 400px;
+height: 100vh;
 background-color: #f9f9f9;
 `;
 
@@ -21,5 +29,6 @@ border-bottom: 3px solid #fff;
 
 export const Title = styled.h1`
 font-size: 25px;
-font-weight: 400;
+color: #444;
+font-weight: 500;
 `;
