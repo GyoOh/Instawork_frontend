@@ -4,12 +4,11 @@ import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import Error from './pages/Error';
 import Add from './pages/Add';
 import Edit from './pages/Edit';
 
 const BrowserRouter = createBrowserRouter([
-  {path: '/', element: <App />, errorElement: Error},
+  {path: '/', element: <App />},
   {path: '/add', element: <Add />},
   {path: '/edit/:id', element: <Edit />},
 ]);
