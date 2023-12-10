@@ -13,13 +13,13 @@ display: flex;
 flex-direction: column;
 width: 100%;
 max-width: 400px;
-height: 100vh;
+height: 98vh;
 background-color: #f9f9f9;
 `;
 
 export const TitleWrapper = styled.div`
 width: 100%;
-height: 50px;
+height: 60px;
 background-color: #f9f9f9;
 display: flex;
 justify-content: center;
