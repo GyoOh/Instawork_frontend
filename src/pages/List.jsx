@@ -16,7 +16,7 @@ import {
 } from "../styles/list.style";
 import { createSvgIcon } from "@mui/material/utils";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PlusIcon = createSvgIcon(
   <svg
@@ -36,6 +36,10 @@ const PlusIcon = createSvgIcon(
 );
 
 export default function List({users}) {
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/edit/${id}`);
+  }
   return (
     <PageContainer>
       <TitleWrapper>
@@ -55,13 +59,13 @@ export default function List({users}) {
 
           <ItemContainer>
         {users.map((user) => (
-            <ItemWrapper key={user.id}>
+            <ItemWrapper key={user.id} onClick={() => handleClick(user.id)}>
               <ItemAvatar>
                 <Avatar src="/broken-image.jpg" />
               </ItemAvatar>
               <ItemDetails>
                 <ItemName> {user.name}</ItemName>
-                <ItemPhone>   {user.phone.toString().length > 8 ? user.phone.toString().substring(0, 3) + "-" + user.phone.toString().substring(3, 6) + "-" + user.phone.toString().substring(6, 10) : user.phone }</ItemPhone>
+                <ItemPhone>   {user.phone.toString().length === 10 ? user.phone.toString().substring(0, 3) + "-" + user.phone.toString().substring(3, 6) + "-" + user.phone.toString().substring(6, 10) : user.phone }</ItemPhone>
         
                 <ItemInfo> {user.email}</ItemInfo>
               </ItemDetails>
