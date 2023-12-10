@@ -66,32 +66,32 @@ export default function Add() {
         event.preventDefault();
         if (firstName.length < 1) {
             setFirstNameError('First name is required');
+            return;
         } else {
             setFirstNameError(' ');
         }
         if (lastName.length < 1) {
             setLastNameError('Last name is required');
+            return;
         } else {
             setLastNameError(' ');
         }
         if (email.length < 1) {
             setEmailError('Email is required');
+            return;
         } else if (!email.includes('@')) {
             setEmailError('Email is not valid');
+            return;
         } else {
             setEmailError(' ');
         }
 
-        if (phone.length < 1) {
+        if (phone.length < 10) {
             setPhoneNumberError('Phone number is required');
-        } else if (phone.length < 10) {
-            setPhoneNumberError('Phone number is not valid');
+            return;
         } else {
             setPhoneNumberError(' ');
         }
-        if (firstName.length < 1 || lastName.length < 1 || email.length < 1 || phone.length < 1 || !email.includes('@') || phone.length < 10) {
-            return;
-        } 
             try {
                 const result = await axios.post('http://localhost:8000/user', {
                 name : firstName + ' ' + lastName,
@@ -127,7 +127,7 @@ export default function Add() {
                     <ErrorMsg>{lastNameError}</ErrorMsg>
                     <InfoInput onChange={emailHandler} type="text" placeholder="email"/>
                     <ErrorMsg>{emailError}</ErrorMsg>
-                    <InfoInput onChange={phoneNumberHandler} type="number" placeholder="phone number"/>
+                    <InfoInput onChange={phoneNumberHandler} type="tel" placeholder="phone number"/>
                     <ErrorMsg>{phoneNumberError}</ErrorMsg>
                     <InfoTitle>Role</InfoTitle>
                     <RadioWrapper>

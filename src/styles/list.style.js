@@ -30,6 +30,7 @@ position: relative;
 `;
 export const ListHeader = styled.div`
 font-size: 25px;
+margin-bottom: 10px;
 `;
 
 export const ListSubHeader = styled.div`

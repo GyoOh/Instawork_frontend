@@ -22,6 +22,8 @@ export const AddSubHeader = styled.div`
 font-size: 18px;
 color: #999;
 padding-top: 5px;
+padding-bottom: 5px;
+margin-bottom: 10px;
 `;
 
 export const InfoWrapper = styled.div`
@@ -35,7 +37,7 @@ margin-right: 15px;
 `;
 
 export const InfoTitle = styled.div`
-font-size: 18px;
+font-size: 20px;
 color: #444;
 font-weight: 500;
 padding-top: 10px;

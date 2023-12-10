@@ -85,6 +85,7 @@ export default function Edit() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const [user, setUser] = useState({}); 
   const [role, setRole] = useState("Regular");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -99,6 +100,7 @@ export default function Edit() {
   useEffect(() => {
     (async () => {
       const response = await axios.get(`http://localhost:8000/user/${id}`);
+      setUser(response.data);
       setFirstName(response.data.name.split(" ")[0]);
       setLastName(response.data.name.split(" ")[1]);
       setEmail(response.data.email);
@@ -125,34 +127,36 @@ export default function Edit() {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log("submit")
     if (firstName.length < 1) {
       setFirstNameError("First name is required");
+      return;
     } else {
       setFirstNameError(" ");
     }
     if (lastName.length < 1) {
       setLastNameError("Last name is required");
+      return;
     } else {
       setLastNameError(" ");
     }
     if (email.length < 1) {
       setEmailError("Email is required");
+      return;
     } else if (!email.includes("@")) {
       setEmailError("Email is not valid");
+      return;
     } else {
       setEmailError(" ");
     }
 
-    if (phone.length < 1) {
+    if (phone.length < 10) {
       setPhoneNumberError("Phone number is required");
-    } else if (phone.length < 10) {
-      setPhoneNumberError("Phone number is not valid");
+      return;
     } else {
       setPhoneNumberError(" ");
     }
       try {
-        const result = await axios.put(`http://localhost:8000/user/${id}`, {
+          await axios.put(`http://localhost:8000/user/${id}`, {
           name: firstName + " " + lastName,
           phone,
           email,
@@ -165,7 +169,7 @@ export default function Edit() {
   };
 
   const deleteHandler = async () => {
-    if(role === "Admin"){
+    if(user.role === "Admin"){
     try {
         const result = await axios.delete(`http://localhost:8000/user/${id}`);
         navigate("/", { replace: true });
@@ -215,7 +219,7 @@ export default function Edit() {
                 <InfoInput
                   onChange={phoneNumberHandler}
                   value={phone}
-                  type="number"
+                  type="tel"
                   placeholder="phone number"
                 />
                 <ErrorMsg>{phoneNumberError}</ErrorMsg>
