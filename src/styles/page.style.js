@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-min-height: 90vh;
+min-height: 100vh;
 `;
 
 export const PageContainer = styled.div`

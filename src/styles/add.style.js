@@ -79,9 +79,13 @@ justify-content: flex-start;
 padding-bottom: 15px;
 margin-bottom: 10px;
 border-bottom: 1px solid #ddd;
+position: relative;
 `;
 export const RadioInput = styled.input`
 width: 20px;
+position: absolute;
+top: 0;
+right: 0;
 `;
 
 export const RadioLabel = styled.label`
@@ -102,6 +106,14 @@ display: flex;
 justify-content: flex-end;
 align-items: flex-end;
 `;
+export const EditButtonDiv = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+`;
+
 
 export const ErrorMsg = styled.p`
 font-size: 10px;

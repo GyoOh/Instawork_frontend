@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const BootstrapButton = styled(Button)({
     boxShadow: 'none',
@@ -35,6 +36,7 @@ const BootstrapButton = styled(Button)({
   });
   
 export default function Add() {
+    const navigate = useNavigate();
     const [role, setRole] = useState('Regular');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -64,34 +66,44 @@ export default function Add() {
         event.preventDefault();
         if (firstName.length < 1) {
             setFirstNameError('First name is required');
-        } 
+        } else {
+            setFirstNameError(' ');
+        }
         if (lastName.length < 1) {
             setLastNameError('Last name is required');
+        } else {
+            setLastNameError(' ');
         }
         if (email.length < 1) {
             setEmailError('Email is required');
         } else if (!email.includes('@')) {
             setEmailError('Email is not valid');
-        } 
+        } else {
+            setEmailError(' ');
+        }
 
         if (phone.length < 1) {
             setPhoneNumberError('Phone number is required');
         } else if (phone.length < 10) {
             setPhoneNumberError('Phone number is not valid');
+        } else {
+            setPhoneNumberError(' ');
         }
-        if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && phone.length > 0) {
-            alert('User added');
+        if (firstName.length < 1 || lastName.length < 1 || email.length < 1 || phone.length < 1 || !email.includes('@') || phone.length < 10) {
+            return;
+        } 
             try {
                 const result = await axios.post('http://localhost:8000/user', {
                 name : firstName + ' ' + lastName,
-                email,
                 phone,
+                email,
                 role
                 })
+                navigate('/', { replace: true });
               } catch (error) {
                 console.log(error);
               }
-    }
+    
   }
     
     return (
